@@ -1,0 +1,29 @@
+
+class MyFirstMenu : GenericMenu
+{
+    override bool OnUIEvent(UIEvent ev)
+    {
+        if (ev.Type == InputEvent.Type_KeyDown)
+        {
+            Console.Printf("Pressed key: %d", ev.KeyChar);
+            return true;
+        }
+        return Super.OnUIEvent(ev);
+    }
+
+    override void Drawer(void)
+    {
+        Screen.Dim(Color(0, 0, 0),
+            0.4,
+            -2 * CleanXFac,
+            Screen.GetHeight() - ((SmallFont.GetHeight() * 2) * (CleanYFac + 2)),
+            Screen.GetWidth() + (2 * CleanXFac),
+            Screen.GetHeight());
+
+        Screen.DrawText(SmallFont, Font.CR_WHITE,
+            3 * CleanXFac, Screen.GetHeight() - ((SmallFont.GetHeight() * 2) * (CleanYFac + 1)),
+            "My Awesome Menu!", DTA_CleanNoMove, true);
+
+        Super.Drawer();
+    }
+}
