@@ -1,0 +1,69 @@
+
+class RedJoinMenu : GenericMenu
+{
+	string menutext;
+	int teamtojoin;
+	bool first;
+	
+	override void Init(Menu parent)
+	{
+		Super.Init(parent);
+		menutext = "You've joined the red team";
+		teamtojoin = 1; // red
+		first = True;
+	}
+	
+	void ChangeTeam(int teamtojoin)
+	{
+		CVar.FindCVar("team").SetInt(teamtojoin);
+		first = true;
+	}
+	
+    override bool OnUIEvent(UIEvent ev)
+    {
+		if (first)
+		{
+			ChangeTeam(teamtojoin);
+		}
+		
+        if (ev.Type == InputEvent.Type_KeyDown)
+        {
+            Console.Printf("Pressed key: %d", ev.KeyChar);
+			Close();
+            return true;
+        }
+		first = False;
+        return Super.OnUIEvent(ev);
+    }
+
+    override void Drawer(void)
+    {
+		
+		
+        Screen.Dim(Color(0, 0, 0),
+            0.4,
+            -2 * CleanXFac,
+            Screen.GetHeight() - ((SmallFont.GetHeight() * 2) * (CleanYFac + 2)),
+            Screen.GetWidth() + (2 * CleanXFac),
+            Screen.GetHeight());
+
+        Screen.DrawText(SmallFont, Font.CR_WHITE,
+            3 * CleanXFac, Screen.GetHeight() - ((SmallFont.GetHeight() * 2) * (CleanYFac + 1)),
+            menutext, DTA_CleanNoMove, true);
+			
+		
+		
+
+        Super.Drawer();
+    }
+}
+
+class BlueJoinMenu : RedJoinMenu
+{
+	override void Init(Menu parent)
+	{
+		Super.Init(parent);
+		menutext = "You've joined the blue team";
+		teamtojoin = 0; // blue
+	}
+}

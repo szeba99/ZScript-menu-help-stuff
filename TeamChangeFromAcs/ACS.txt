@@ -1,0 +1,11 @@
+
+Script "RedJoin" (void)
+{
+	ScriptCall("forACS", "JoinRedTeam");
+}
+
+
+Script "BlueJoin" (void)
+{
+	ScriptCall("forACS", "JoinBlueTeam");
+}

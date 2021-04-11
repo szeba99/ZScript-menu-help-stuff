@@ -1,0 +1,21 @@
+class forACS
+{
+   static void JoinRedTeam (void)
+   {
+      Menu.SetMenu("RedJoinMenu");
+   }
+   
+   static void JoinBlueTeam (void)
+   {
+      Menu.SetMenu("BlueJoinMenu");
+   }
+}
+
+
+/*
+// Open Sample Menu from linedef
+script "openmenu_sample" (void)
+{
+   ScriptCall("YOURMOD_MenuFunctions", "OpenMenu_SampleMenu ");
+}
+*/
